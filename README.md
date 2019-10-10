@@ -19,6 +19,7 @@ You will also see any lint errors in the console.
 
 Note. username : admin
       password : admin
+
 3. Test app
 
 ### `npm test`
