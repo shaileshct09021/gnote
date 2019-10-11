@@ -18,10 +18,14 @@ body {
 			.notes {
 				.note-list {
 					.note-item {
-						.remove-action {
-							float: right;
-							cursor: pointer;
-						}
+					  .actions {
+					    float: right;
+              .remove-action,.edit-action {
+                cursor: pointer;
+                padding: 6px;
+                margin-left: 6px;
+              }
+					  }
 					}
 				}
 			}

@@ -18,6 +18,7 @@ class GNotesPage extends Component {
       body         : "",
       invalidTitle : false,
       invalidBody  : false,
+      isEditMode   : false,
     };
 
     this.handleAddNoteSubmit          = this.handleAddNoteSubmit.bind(this);
@@ -26,6 +27,7 @@ class GNotesPage extends Component {
     this.handleRemoveNote             = this.handleRemoveNote.bind(this);
     this.resetAddNoteFormFields       = this.resetAddNoteFormFields.bind(this);
     this.handleLogout                 = this.handleLogout.bind(this);
+    this.handleEditNote               = this.handleEditNote.bind(this);
   }
 
   componentDidMount() {
@@ -43,6 +45,7 @@ class GNotesPage extends Component {
 
   handleRemoveNote(index) {
     this.props.gNotesActions.removeNote(index);
+    this.resetAddNoteFormFields();
   }
 
   resetAddNoteFormFields() {
@@ -51,6 +54,7 @@ class GNotesPage extends Component {
       body         : "",
       invalidTitle : false,
       invalidBody  : false,
+      isEditMode   : false,
     })
   }
 
@@ -67,10 +71,19 @@ class GNotesPage extends Component {
       this.validateAddNoteFormFields();
     }
     else {
-      this.props.gNotesActions.addNote({
-        title : this.state.title,
-        body  : this.state.body
-      });
+      if(!!this.state.isEditMode) {
+        this.props.gNotesActions.updateNote({
+          title : this.state.title,
+          body  : this.state.body,
+          index : this.state.isEditMode
+        });
+      }
+      else {
+        this.props.gNotesActions.addNote({
+          title : this.state.title,
+          body  : this.state.body
+        });
+      }
       this.resetAddNoteFormFields();
     }
   }
@@ -80,14 +93,21 @@ class GNotesPage extends Component {
     this.props.history.push('/login');
   }
 
+  handleEditNote(index) {
+    const note = this.props.notes.get(index)
+    this.setState({
+      title        : note.get('title'),
+      body         : note.get('body'),
+      invalidTitle : false,
+      invalidBody  : false,
+      isEditMode   : index,
+    })
+  }
+
   render () {
     return (
       <div className="gnotes">
         <CardGroup>
-          <Notes 
-            notes={this.props.notes}
-            handleRemoveNote={this.handleRemoveNote}
-          />
           <AddNote
             handleAddNoteSubmit={this.handleAddNoteSubmit}
             handleAddNoteFormFieldChange={this.handleAddNoteFormFieldChange}
@@ -95,6 +115,12 @@ class GNotesPage extends Component {
             body={this.state.body}
             invalidTitle={this.state.invalidTitle}
             invalidBody={this.state.invalidBody}
+            isEditMode={this.state.isEditMode}
+          />
+          <Notes
+            notes={this.props.notes}
+            handleRemoveNote={this.handleRemoveNote}
+            handleEditNote={this.handleEditNote}
           />
         </CardGroup>
         <div className="logout-action">

@@ -12,6 +12,13 @@ export function removeNote(id) {
   }
 }
 
+export function updateNote(note) {
+  return {
+    type: 'UPDATE_NOTE',
+    note
+  }
+}
+
 export function authorize(status) {
   return {
     type: 'AUTHORIZE',

@@ -11,9 +11,12 @@ body .App {
     color: white; }
   body .App .login {
     text-align: center; }
-  body .App .gnotes .notes .note-list .note-item .remove-action {
-    float: right;
-    cursor: pointer; }
+  body .App .gnotes .notes .note-list .note-item .actions {
+    float: right; }
+    body .App .gnotes .notes .note-list .note-item .actions .remove-action, body .App .gnotes .notes .note-list .note-item .actions .edit-action {
+      cursor: pointer;
+      padding: 6px;
+      margin-left: 6px; }
   body .App .gnotes .logout-action {
     text-align: center;
     margin-top: 20px; }

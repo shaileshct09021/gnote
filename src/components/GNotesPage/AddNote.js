@@ -5,11 +5,11 @@ import {
 
 const AddNote = ({
   handleAddNoteSubmit, handleAddNoteFormFieldChange, title, body,
-  invalidTitle, invalidBody
+  invalidTitle, invalidBody, isEditMode,
 }) => (
   <Card>
     <CardBody>
-      <CardTitle>Add Note</CardTitle>
+      <CardTitle>{!!isEditMode ? 'Edit Note' : 'Add Note'}</CardTitle>
       <Form>
         <FormGroup>
           <Label for="title">Title</Label>
@@ -44,7 +44,7 @@ const AddNote = ({
           onClick={handleAddNoteSubmit}
           disabled={invalidTitle || invalidBody}
         >
-          Save
+          {!!isEditMode ? 'Update' : 'Save'}
         </Button>
       </Form>
     </CardBody>

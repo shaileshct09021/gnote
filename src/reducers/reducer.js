@@ -17,6 +17,11 @@ const reducer = (state = initialState, action) => {
     const newNotes = oldNotes.delete(action.id);
     return state.set('notes', newNotes);
   }
+  else if (action.type === 'UPDATE_NOTE') {
+    const oldNotes = state.get('notes');
+    const newNotes = oldNotes.set(action.note.index, Map(action.note));
+    return state.set('notes', newNotes);
+  }
   else if(action.type === 'AUTHORIZE') {
     return state.set('isLoggedIn', action.status);
   }

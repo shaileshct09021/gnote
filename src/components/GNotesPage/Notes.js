@@ -1,7 +1,7 @@
 import React from 'react';
-import { Card, CardBody, CardTitle, ListGroup, ListGroupItem, Badge } from 'reactstrap';
+import { Card, CardBody, CardTitle, ListGroup, ListGroupItem, Badge, Alert } from 'reactstrap';
 
-const Notes = ({notes, handleRemoveNote}) => (
+const Notes = ({notes, handleRemoveNote, handleEditNote}) => (
   <Card className="notes">
     <CardBody>
       <CardTitle>Notes</CardTitle>
@@ -15,7 +15,10 @@ const Notes = ({notes, handleRemoveNote}) => (
               <ListGroupItem key={index} className="note-item">
                 <span>
                   <strong>{title}</strong>
-                  <Badge color="danger" className="remove-action" onClick={() => handleRemoveNote(index)}>Remove</Badge>
+                  <div className="actions">
+                    <Badge color="primary" className="edit-action" onClick={() => handleEditNote(index)}>Edit</Badge>
+                    <Badge color="danger" className="remove-action" onClick={() => handleRemoveNote(index)}>Remove</Badge>
+                  </div>
                 </span>
                 <p>
                   {body}
@@ -23,6 +26,12 @@ const Notes = ({notes, handleRemoveNote}) => (
               </ListGroupItem>
             );
           })
+        }
+        {
+          notes && notes.size === 0 &&
+            <Alert color="warning">
+              No record found
+            </Alert>
         }
       </ListGroup>
     </CardBody>
