@@ -11,6 +11,11 @@ body .App {
     color: white; }
   body .App .login {
     text-align: center; }
+  body .App .gnotes .row {
+    margin-right: 0;
+    margin-left: 0; }
+    body .App .gnotes .row .card {
+      border: none; }
   body .App .gnotes .notes .note-list .note-item .actions {
     float: right; }
     body .App .gnotes .notes .note-list .note-item .actions .remove-action, body .App .gnotes .notes .note-list .note-item .actions .edit-action {

@@ -9,7 +9,11 @@ const AddNote = ({
 }) => (
   <Card>
     <CardBody>
-      <CardTitle>{!!isEditMode ? 'Edit Note' : 'Add Note'}</CardTitle>
+      <CardTitle>
+        <strong>
+          {!!isEditMode ? 'Edit Note' : 'Add Note'}
+        </strong>
+      </CardTitle>
       <Form>
         <FormGroup>
           <Label for="title">Title</Label>
@@ -39,13 +43,15 @@ const AddNote = ({
             <FormFeedback>Body is required</FormFeedback>
           }
         </FormGroup>
-        <Button
-          type="button"
-          onClick={handleAddNoteSubmit}
-          disabled={invalidTitle || invalidBody}
-        >
-          {!!isEditMode ? 'Update' : 'Save'}
-        </Button>
+        <FormGroup>
+          <Button
+            type="button"
+            onClick={handleAddNoteSubmit}
+            disabled={invalidTitle || invalidBody}
+          >
+            {!!isEditMode ? 'Update' : 'Save'}
+          </Button>
+        </FormGroup>
       </Form>
     </CardBody>
   </Card>

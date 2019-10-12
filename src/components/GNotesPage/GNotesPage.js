@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { CardGroup, Button } from 'reactstrap';
+import { Button, Row, Col } from 'reactstrap';
 import { bindActionCreators } from 'redux';
 import { withRouter } from "react-router-dom";
 
@@ -107,22 +107,26 @@ class GNotesPage extends Component {
   render () {
     return (
       <div className="gnotes">
-        <CardGroup>
-          <AddNote
-            handleAddNoteSubmit={this.handleAddNoteSubmit}
-            handleAddNoteFormFieldChange={this.handleAddNoteFormFieldChange}
-            title={this.state.title}
-            body={this.state.body}
-            invalidTitle={this.state.invalidTitle}
-            invalidBody={this.state.invalidBody}
-            isEditMode={this.state.isEditMode}
-          />
-          <Notes
-            notes={this.props.notes}
-            handleRemoveNote={this.handleRemoveNote}
-            handleEditNote={this.handleEditNote}
-          />
-        </CardGroup>
+        <Row>
+          <Col xs="12" sm="12" md="12" lg="6">
+            <AddNote
+              handleAddNoteSubmit={this.handleAddNoteSubmit}
+              handleAddNoteFormFieldChange={this.handleAddNoteFormFieldChange}
+              title={this.state.title}
+              body={this.state.body}
+              invalidTitle={this.state.invalidTitle}
+              invalidBody={this.state.invalidBody}
+              isEditMode={this.state.isEditMode}
+            />
+          </Col>
+          <Col xs="12" sm="12" md="12" lg="6">
+            <Notes
+              notes={this.props.notes}
+              handleRemoveNote={this.handleRemoveNote}
+              handleEditNote={this.handleEditNote}
+            />
+          </Col>
+        </Row>
         <div className="logout-action">
           <Button
             type="button"

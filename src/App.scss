@@ -15,6 +15,13 @@ body {
 			text-align: center;
 		}
 		.gnotes {
+		  .row {
+		    margin-right: 0;
+		    margin-left:0;
+        .card {
+          border: none;
+        }
+		  }
 			.notes {
 				.note-list {
 					.note-item {
